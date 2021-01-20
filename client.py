@@ -60,7 +60,8 @@ class Client():
         except ValueError:
             pass
 def main():
-    mode=2 #0 =cliente ligero, 1 = balanceado, 2 = pesado
+    mode=(int(input('Elige modo: 0 =cliente ligero, 1 = balanceado, 2 = pesado: ')))
+    #mode=0 0 =cliente ligero, 1 = balanceado, 2 = pesado
     op=None
     cl= Client('127.0.0.1', 1908)
     print('Calculadora basica:\nEscribe tu operación y presiona enter\nPor ejemplo: a + b \nPara salir escribe "S".')
