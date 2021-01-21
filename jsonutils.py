@@ -2,7 +2,8 @@ import json
 
 messageType = {
     'Operation': 0,
-    'Data': 1
+    'Data': 1,
+    'Exit': 2
 }
 
 def decodeJSON(message):

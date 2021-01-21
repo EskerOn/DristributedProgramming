@@ -35,12 +35,16 @@ class Client():
                     result= message['res']
                     #time.sleep(2)
                     self.buffer=result
+                elif message['type'] == messageType['Exit']:
+                    print("JOJO")
+                    break
             except socket.error:
                 print("socket error")
                 pass
             except ValueError:
                 print("socket error")
                 pass
+        print("JUASJUAS")
 
     def getBuffer(self):
         time.sleep(1)
@@ -53,6 +57,8 @@ class Client():
         try:
             if res == None:
                 self.client.send(encodeJSON(messageType['Operation'], op))
+            elif res =="S":
+                self.client.send(encodeJSON(messageType['Exit'], op))
             else:
                 self.client.send(encodeJSON(messageType['Data'], op, res))
         except socket.error:
@@ -65,8 +71,8 @@ def main():
     op=None
     cl= Client('127.0.0.1', 1908)
     print('Calculadora basica:\nEscribe tu operación y presiona enter\nPor ejemplo: a + b \nPara salir escribe "S".')
+    op=input('Introduce tu operación: ')
     while not (op == 'S'):
-        op=input('Introduce tu operación: ')
         if mode == 0:
             cl.sendMessage(op)
             res=cl.getBuffer()
@@ -90,5 +96,9 @@ def main():
                 print("= {}".format(res))
             else:
                 print("Error de comunicación")
+        op=input('Introduce tu operación: ')
+    cl.sendMessage("S","S")
+    print("JAJA")    
+    #cl.client.close()
 
 main()
