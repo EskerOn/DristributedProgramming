@@ -44,7 +44,7 @@ class Client():
             except ValueError:
                 print("socket error")
                 pass
-        print("JUASJUAS")
+        #print("JUASJUAS")
 
     def getBuffer(self):
         time.sleep(1)
@@ -75,30 +75,34 @@ def main():
     while not (op == 'S'):
         if mode == 0:
             cl.sendMessage(op)
+            time.sleep(1)
             res=cl.getBuffer()
             print("= {}".format(res))
         elif mode == 1:
             if random.randint(0,100)%2 == 0:
                 cl.sendMessage(op)
+                time.sleep(1)
                 res=cl.getBuffer()
                 print("= {}".format(res))
             else:
                 res=eval(op)
-            cl.sendMessage(op, res)
-            if cl.getBuffer() == 1:
-                print("= {}".format(res))
-            else:
-                print("Error de comunicación")
+                cl.sendMessage(op, res)
+                time.sleep(1)
+                if cl.getBuffer() == 1:
+                    print("= {}".format(res))
+                else:
+                    print("Error de comunicación")
         elif mode == 2:
             res=eval(op)
             cl.sendMessage(op, res)
+            time.sleep(1)
             if cl.getBuffer() == 1:
                 print("= {}".format(res))
             else:
                 print("Error de comunicación")
         op=input('Introduce tu operación: ')
     cl.sendMessage("S","S")
-    print("JAJA")    
+    time.sleep(1)
     #cl.client.close()
 
 main()

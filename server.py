@@ -75,9 +75,15 @@ class Server():
                     connection.send(encodeJSON(messageType['Data'],None ,result))
                     self.history.append([message['operation'], result])
                 elif messagetype == messageType['Data']:
+                    print("Recibo resultados: {} -> {}".format(message['operation'], message['res']), end="\r")
+                    sleep(0.5)
+                    print(" "*len("Recibo resultados: {} -> {}".format(message['operation'], message['res'])), end="\r")
                     self.history.append([message['operation'], message['res']])
                     connection.send(encodeJSON(messageType['Data'],None , 1))
                 elif messagetype == messageType['Exit']:
+                    print("Cliente desconectado", end="\r")
+                    sleep(0.5)
+                    print(" "*len("Cliente desconectado"), end="\r")
                     connection.send(encodeJSON(messageType['Exit'],None , 1))
                     nclose = False
             except:
